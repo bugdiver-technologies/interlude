@@ -1,0 +1,13 @@
+{
+  "name": "interlude",
+  "owner": {
+    "name": "BugDiver Technologies"
+  },
+  "plugins": [
+    {
+      "name": "interlude",
+      "source": "./",
+      "description": "A tiny rotating card (trivia, facts, tips, jokes) in the status line while the agent works. Never enters the model context."
+    }
+  ]
+}
