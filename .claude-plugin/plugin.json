@@ -1,5 +1,5 @@
 {
   "name": "interlude",
   "description": "A tiny rotating card (trivia, facts, tips, jokes) in the status line while Claude works. Never enters Claude's context.",
-  "version": "0.2.0"
+  "version": "0.3.0"
 }
