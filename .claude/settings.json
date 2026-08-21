@@ -1,0 +1,7 @@
+{
+  "statusLine": {
+    "type": "command",
+    "command": "sh src/interlude.sh statusline # interlude-statusline",
+    "refreshInterval": 1
+  }
+}

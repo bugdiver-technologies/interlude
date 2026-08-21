@@ -1,0 +1,176 @@
+[
+  {
+    "type": "trivia",
+    "q": "Which planet has the shortest day?",
+    "options": ["Earth", "Jupiter", "Mars", "Venus"],
+    "answer": 1,
+    "why": "Jupiter rotates once in roughly 10 hours."
+  },
+  {
+    "type": "trivia",
+    "q": "What does HTTP status code 404 mean?",
+    "options": ["Unauthorized", "Not Found", "Server Error", "Redirect"],
+    "answer": 1,
+    "why": "404 means the server cannot find the requested resource."
+  },
+  {
+    "type": "trivia",
+    "q": "The Python language is named after what?",
+    "options": ["A snake species", "Monty Python", "A British university", "A math paper"],
+    "answer": 1,
+    "why": "Guido van Rossum named it after Monty Python's Flying Circus."
+  },
+  {
+    "type": "trivia",
+    "q": "A light-year measures what?",
+    "options": ["Time", "Distance", "Brightness", "Speed"],
+    "answer": 1,
+    "why": "A light-year is the distance light travels in one year."
+  },
+  {
+    "type": "trivia",
+    "q": "Who invented the World Wide Web?",
+    "options": ["Bill Gates", "Tim Berners-Lee", "Vint Cerf", "Steve Jobs"],
+    "answer": 1,
+    "why": "Tim Berners-Lee proposed the Web at CERN in 1989."
+  },
+  {
+    "type": "trivia",
+    "q": "Which gas makes up most of Earth's atmosphere?",
+    "options": ["Oxygen", "Carbon dioxide", "Nitrogen", "Argon"],
+    "answer": 2,
+    "why": "Nitrogen is about 78% of Earth's atmosphere."
+  },
+  {
+    "type": "trivia",
+    "q": "What port does DNS typically use?",
+    "options": ["22", "53", "80", "443"],
+    "answer": 1,
+    "why": "DNS uses port 53, usually over UDP."
+  },
+  {
+    "type": "trivia",
+    "q": "Who created Git?",
+    "options": ["Linus Torvalds", "Guido van Rossum", "Dennis Ritchie", "James Gosling"],
+    "answer": 0,
+    "why": "Linus Torvalds created Git in 2005 to manage Linux kernel development."
+  },
+  {
+    "type": "trivia",
+    "q": "CSS stands for what?",
+    "options": ["Computer Style Syntax", "Cascading Style Sheets", "Creative Screen System", "Compact Style Source"],
+    "answer": 1,
+    "why": "CSS is Cascading Style Sheets, used to style web pages."
+  },
+  {
+    "type": "trivia",
+    "q": "In which year was the first iPhone announced?",
+    "options": ["2005", "2007", "2009", "2010"],
+    "answer": 1,
+    "why": "Steve Jobs announced the iPhone in January 2007."
+  },
+  {
+    "type": "trivia",
+    "q": "TCP is generally preferred over UDP when you need what?",
+    "options": ["Lowest latency", "Reliable delivery", "Broadcasting", "Tiny headers"],
+    "answer": 1,
+    "why": "TCP provides acknowledgements, retransmission, and ordered delivery."
+  },
+  {
+    "type": "trivia",
+    "q": "Ada Lovelace is best known for what?",
+    "options": ["Inventing the transistor", "Writing early computer programs", "Founding IBM", "Creating the mouse"],
+    "answer": 1,
+    "why": "She wrote notes on Babbage's Analytical Engine that are considered early programs."
+  },
+  {
+    "type": "trivia",
+    "q": "JSON stands for what?",
+    "options": ["Java Source Object Notation", "JavaScript Object Notation", "Just Simple Object Names", "Joined String Output Network"],
+    "answer": 1,
+    "why": "JSON is JavaScript Object Notation, a common data interchange format."
+  },
+  {
+    "type": "trivia",
+    "q": "What is 127.0.0.1?",
+    "options": ["A Google DNS server", "The loopback address", "A default gateway", "An IPv6 address"],
+    "answer": 1,
+    "why": "127.0.0.1 is localhost, the machine's loopback interface."
+  },
+  {
+    "type": "trivia",
+    "q": "Which planet is known as the Red Planet?",
+    "options": ["Venus", "Mars", "Jupiter", "Mercury"],
+    "answer": 1,
+    "why": "Mars looks red because of iron oxide on its surface."
+  },
+  {
+    "type": "trivia",
+    "q": "Moore's Law observed that transistors on a chip roughly do what?",
+    "options": ["Halve every year", "Double every two years", "Stay constant", "Triple every month"],
+    "answer": 1,
+    "why": "Gordon Moore observed that transistor counts doubled about every two years."
+  },
+  {
+    "type": "trivia",
+    "q": "The Linux kernel was first released in which decade?",
+    "options": ["1970s", "1980s", "1990s", "2000s"],
+    "answer": 2,
+    "why": "Linus Torvalds released Linux in 1991."
+  },
+  {
+    "type": "trivia",
+    "q": "In binary, what is decimal 8?",
+    "options": ["100", "1000", "10000", "111"],
+    "answer": 1,
+    "why": "8 is 2^3, which is 1000 in binary."
+  },
+  {
+    "type": "fact",
+    "text": "Honey never spoils. Edible honey has been found in Egyptian tombs over 3,000 years old."
+  },
+  {
+    "type": "fact",
+    "text": "A day on Venus (243 Earth days) is longer than a year on Venus (225 Earth days)."
+  },
+  {
+    "type": "fact",
+    "text": "The first computer bug was a literal moth found in a Harvard Mark II relay in 1947."
+  },
+  {
+    "type": "fact",
+    "text": "Octopuses have three hearts, nine brains, and blue, copper-based blood."
+  },
+  {
+    "type": "fact",
+    "text": "There are more possible chess games than atoms in the observable universe."
+  },
+  {
+    "type": "fact",
+    "text": "Sharks predate trees. They have existed for about 400 million years; trees, about 350."
+  },
+  {
+    "type": "tip",
+    "text": "git commit --fixup=<sha> then git rebase -i --autosquash tidies history without manual reordering."
+  },
+  {
+    "type": "tip",
+    "text": "ripgrep (rg) respects .gitignore by default and is dramatically faster than grep -R."
+  },
+  {
+    "type": "tip",
+    "text": "In shell, ${var:-default} expands to default only if var is unset or empty."
+  },
+  {
+    "type": "tip",
+    "text": "python -m json.tool < file.json pretty-prints JSON without installing anything."
+  },
+  {
+    "type": "tip",
+    "text": "curl -w '@-' <<< '\\ntime: %{time_total}s\\n' https://example.com shows request timings."
+  },
+  {
+    "type": "tip",
+    "text": "In vim, gd jumps to the local definition of the symbol under the cursor."
+  }
+]
