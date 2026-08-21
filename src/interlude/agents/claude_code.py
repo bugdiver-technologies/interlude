@@ -44,6 +44,10 @@ class ClaudeCodeAdapter(AgentAdapter):
         sys.stdout.write("{}\n")
         sys.stdout.flush()
 
+    def transcript_path(self, payload: dict[str, Any]) -> str | None:
+        path = payload.get("transcript_path")
+        return path if isinstance(path, str) and path else None
+
     # --- status line -------------------------------------------------------
 
     def supports_statusline(self) -> bool:

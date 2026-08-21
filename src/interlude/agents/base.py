@@ -38,6 +38,15 @@ class AgentAdapter(ABC):
     def emit_hook_ok(self) -> None:
         """Write the host's 'no-op' hook response so it doesn't inject anything into the model."""
 
+    def transcript_path(self, payload: dict[str, Any]) -> str | None:
+        """Path to the host's conversation log, when it exposes one.
+
+        Used as a liveness signal: hosts append to it while a turn runs. Return
+        None when the host has no such file, and the panel falls back to the
+        turn-end hook alone.
+        """
+        return None
+
     # --- status line -------------------------------------------------------
 
     def supports_statusline(self) -> bool:

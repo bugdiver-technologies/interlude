@@ -32,8 +32,12 @@ def state_dir() -> Path:
 SHOW_DELAY_SEC = 1
 ROTATE_SEC = 12
 REVEAL_AFTER_SEC = 8
-STALE_SEC = 3600
+STALE_SEC = 900
 CARDS_PER_TURN = 6
+
+# How long the host's transcript may sit untouched before we treat the turn as
+# over. Generous enough to survive a long API call with no streamed output.
+TRANSCRIPT_IDLE_SEC = 45
 
 # Generation -----------------------------------------------------------------
 

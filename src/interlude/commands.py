@@ -24,6 +24,7 @@ from .config import (
     REVEAL_AFTER_SEC,
     SHOW_DELAY_SEC,
     STALE_SEC,
+    TRANSCRIPT_IDLE_SEC,
     USER_DECK,
     state_dir,
 )
@@ -52,6 +53,31 @@ def _clear_marker(session_id: str) -> None:
         _state_path(session_id).unlink()
     except FileNotFoundError:
         pass
+
+
+def _hidden_path() -> Path:
+    return state_dir() / "hidden"
+
+
+def _is_hidden() -> bool:
+    return _hidden_path().exists()
+
+
+def _host_went_quiet(adapter: AgentAdapter, payload: dict[str, Any]) -> bool:
+    """Whether the host has stopped writing to its transcript.
+
+    The turn-end hook is what normally clears the marker, but it cannot fire
+    when the plugin is disabled or the host is killed mid-turn, which would
+    otherwise leave a card on screen until the marker went stale.
+    """
+    path = adapter.transcript_path(payload)
+    if not path:
+        return False
+    try:
+        modified = Path(path).stat().st_mtime
+    except OSError:
+        return False
+    return time.time() - modified > TRANSCRIPT_IDLE_SEC
 
 
 # --- hook commands ----------------------------------------------------------
@@ -97,6 +123,10 @@ def statusline(adapter: AgentAdapter) -> None:
         payload = adapter.read_hook_payload()
         session_id = adapter.session_id_of(payload)
     except Exception:
+        return
+    if _is_hidden():
+        return
+    if _host_went_quiet(adapter, payload):
         return
     marker = _read_marker(session_id)
     if marker is None:
@@ -156,6 +186,30 @@ def status() -> None:
 def generate_now() -> None:
     """Background entry point — spawn_background_generate() invokes this."""
     generate.run_generation()
+
+
+def hide() -> None:
+    """Mute the status line until `show`. Leaves the current turn marker in place."""
+    try:
+        state_dir().mkdir(parents=True, exist_ok=True)
+        _hidden_path().write_text("", encoding="utf-8")
+    except OSError:
+        print("Could not hide Interlude.", file=sys.stderr)
+        return
+    print("Hidden. Run `interlude show` to bring the card back.")
+
+
+def show() -> None:
+    """Unmute the status line. The current turn's card returns on the next poll."""
+    try:
+        _hidden_path().unlink()
+    except FileNotFoundError:
+        print("Already visible.")
+        return
+    except OSError:
+        print("Could not show Interlude.", file=sys.stderr)
+        return
+    print("Visible again.")
 
 
 def install(adapter: AgentAdapter, *, if_missing: bool = False, force: bool = False) -> None:

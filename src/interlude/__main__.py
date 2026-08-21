@@ -29,6 +29,8 @@ def build_parser() -> argparse.ArgumentParser:
     sub.add_parser("refresh", help="Manually top up the user deck via the LLM CLI")
     sub.add_parser("generate", help="(internal) Synchronous generation. Spawned in the background by hooks.")
     sub.add_parser("status", help="Show deck stats")
+    sub.add_parser("hide", help="Mute the status line until `show`")
+    sub.add_parser("show", help="Unmute the status line after `hide`")
     install = sub.add_parser("install", help="Register Interlude as the host's status line")
     install.add_argument("--force", action="store_true")
     install.add_argument("--if-missing", action="store_true")
@@ -56,6 +58,10 @@ def main() -> int:
         commands.generate_now()
     elif args.cmd == "status":
         commands.status()
+    elif args.cmd == "hide":
+        commands.hide()
+    elif args.cmd == "show":
+        commands.show()
     elif args.cmd == "install":
         commands.install(adapter, if_missing=args.if_missing, force=args.force)
     elif args.cmd == "uninstall":

@@ -17,6 +17,15 @@ In Claude Code:
 
 Reload plugins if Claude asks (`/reload-plugins`). On the next session, Interlude installs its status line if you do not already have a custom one.
 
+While the plugin is enabled, two slash commands are available when Claude is idle:
+
+| Command | What it does |
+|---|---|
+| `/interlude:status` | Deck stats |
+| `/interlude:refresh` | Generate a fresh batch of cards |
+
+These go through the chat, so they queue if you type them while Claude is already working. Use them between turns.
+
 ### From source
 
 ```bash
@@ -46,6 +55,8 @@ Manual controls:
 ```bash
 sh src/interlude.sh refresh     # force a generation now (ignores throttle)
 sh src/interlude.sh status      # deck stats (total / unseen / last gen)
+sh src/interlude.sh hide        # mute the status line
+sh src/interlude.sh show        # unmute after hide
 sh src/interlude.sh uninstall   # remove Interlude's status line
 ```
 
@@ -64,5 +75,9 @@ Claude Code's plugin surfaces either inject into the model (`additionalContext`,
 
 - **Hooks** observe the turn lifecycle and write a tiny per-session marker under `/tmp/interlude-$UID/`. They emit only `{}` on stdout so nothing reaches the model.
 - **Status line** reads the marker, picks a card by elapsed time, and prints ANSI. Its stdout is TUI-only and does not consume tokens.
+
+The turn-end hook normally clears the marker, but it cannot fire if you disable the plugin or kill Claude mid-turn. So the status line also hides the panel once the session transcript has sat untouched for `TRANSCRIPT_IDLE_SEC`, and ignores markers older than `STALE_SEC` outright.
+
+Note that the status line is Claude's own setting rather than a plugin surface, so disabling the plugin leaves it registered. Run `sh src/interlude.sh uninstall` to remove it.
 
 The `src/interlude.sh` wrapper finds a suitable Python interpreter and hands off to `python -m interlude`; if none is available, the wrapper emits `{}` and exits so hooks never break Claude Code.
