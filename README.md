@@ -4,14 +4,33 @@ A Claude Code plugin that shows a small rotating card — trivia, facts, tips, o
 
 Cards are display only. They never enter Claude's context, never travel through `additionalContext`, and never appear in the transcript.
 
-## Try it
+## Install
+
+### From the marketplace
+
+In Claude Code:
+
+```text
+/plugin marketplace add BugDiver-Technologies/interlude
+/plugin install interlude@interlude
+```
+
+Reload plugins if Claude asks (`/reload-plugins`). On the next session, Interlude installs its status line if you do not already have a custom one.
+
+### From source
 
 ```bash
+git clone https://github.com/BugDiver-Technologies/interlude.git
+cd interlude
 chmod +x src/interlude.sh
-sh src/interlude.sh demo         # preview a few cards
+sh src/interlude.sh demo         # optional: preview a few cards
 sh src/interlude.sh install      # register the status line in ~/.claude/settings.json
 claude --plugin-dir .
 ```
+
+`--plugin-dir .` loads this checkout for one session. For a lasting local install, add the clone as a marketplace (`/plugin marketplace add /path/to/interlude`) and install `interlude@interlude`.
+
+## Try it
 
 Send a prompt that takes more than a second. The card fades in ~1s after submit, cards rotate every ~12s, trivia auto-reveals its answer after ~8s, and the panel disappears when Claude finishes. Answers are auto-revealed on a timer — there's no input path (typing `A`/`B`/`C`/`D` in chat would become a real prompt).
 
